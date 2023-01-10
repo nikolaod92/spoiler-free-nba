@@ -1,65 +1,57 @@
 import {
-  Button,
-  Flex,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
+  ModalOverlay,
   ModalContent,
   ModalHeader,
-  ModalOverlay,
+  Flex,
+  ModalCloseButton,
+  ModalBody,
   Text,
-  useDisclosure
+  Modal
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import useFetch from "../../hooks/useFetch";
 import { Stats } from "../../types";
 import Loader from "../Loader/Loader";
 import LoaderContainer from "../Loader/LoaderContainer";
 import Logo, { TeamAbbreviation } from "../Logo";
+import ErrorDisplay from "../ui/ErrorDisplay";
 import StatTable from "./StatTable";
 import StatTableDisplaySwitch from "./StatTableDisplaySwitch";
 
-interface Props {
+type Props = {
   gameId: number;
   home: TeamAbbreviation;
   away: TeamAbbreviation;
-}
+  onClose: () => void;
+};
 
-const BoxScore = ({ gameId, home, away }: Props) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const [stats, setStats] = useState<Stats[] | null>(null);
+const BoxScoreModal = ({ gameId, home, away, onClose }: Props) => {
   const [display, setDisplay] = useState<TeamAbbreviation | "all">("all");
 
-  console.log(display);
+  const {
+    data: stats,
+    loading,
+    error
+  } = useFetch<Stats[]>(`stats?game_ids[]=${gameId}&per_page=50`, { timeout: 5000 });
 
-  useEffect(() => {
-    if (isOpen) {
-      fetch(`https://www.balldontlie.io/api/v1/stats?game_ids[]=${gameId}&per_page=50`)
-        .then((response) => response.json())
-        .then(({ data }: { data: Stats[] }) => {
-          setStats(data.sort((a, b) => Number(b.pts) - Number(a.pts)));
-        });
-    }
-  }, [isOpen]);
+  const sortedStats = stats?.sort((a, b) => Number(b.pts) - Number(a.pts));
+  console.log("Fetching stats for game: ", gameId, home, away);
 
   return (
-    <>
-      <Button size="xs" shadow="sm" w={24} onClick={onOpen}>
-        Box Score
-      </Button>
-      <Modal
-        size={{ base: "md", md: "6xl" }}
-        isOpen={isOpen}
-        onClose={onClose}
-        motionPreset="slideInBottom"
-        scrollBehavior="inside"
-        blockScrollOnMount
-      >
-        {!stats ? (
-          <LoaderContainer>
-            <Loader />
-          </LoaderContainer>
-        ) : (
+    <Modal
+      size={{ base: "md", md: "6xl" }}
+      isOpen
+      onClose={onClose}
+      motionPreset="slideInBottom"
+      scrollBehavior="inside"
+      blockScrollOnMount
+    >
+      {loading ? (
+        <LoaderContainer>
+          <Loader />
+        </LoaderContainer>
+      ) : (
+        sortedStats && (
           <>
             <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(2px) " />
             <ModalContent overflow="hidden">
@@ -67,8 +59,8 @@ const BoxScore = ({ gameId, home, away }: Props) => {
                 <Flex direction="column">
                   <Flex gap={2}>
                     <Logo size={64} team={home} />
-                    <Text fontSize="4xl">{stats[0].game.home_team_score}</Text>
-                    <Text fontSize="4xl">{stats[0].game.visitor_team_score}</Text>
+                    <Text fontSize="4xl">{sortedStats[0].game.home_team_score}</Text>
+                    <Text fontSize="4xl">{sortedStats[0].game.visitor_team_score}</Text>
                     <Logo size={64} team={away} />
                   </Flex>
                   <Flex alignItems="center">
@@ -85,14 +77,15 @@ const BoxScore = ({ gameId, home, away }: Props) => {
               </ModalHeader>
               <ModalCloseButton />
               <ModalBody p={0}>
-                <StatTable stats={stats} display={display} />
+                <StatTable stats={sortedStats} display={display} />
               </ModalBody>
             </ModalContent>
           </>
-        )}
-      </Modal>
-    </>
+        )
+      )}
+      {error.length && <ErrorDisplay message={error} />}
+    </Modal>
   );
 };
 
-export default BoxScore;
+export default BoxScoreModal;

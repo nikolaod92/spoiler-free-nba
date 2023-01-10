@@ -2,15 +2,15 @@ import { Button, Flex, HStack, Text, VStack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { Game } from "../../types";
 import { hitTheOver, isBlowout, winner } from "../../utils";
-import BoxScore from "../BoxScore/BoxScore";
+import BoxScoreContainer from "../BoxScore/BoxScoreContainer";
 import Logo from "../Logo";
-import ToggleButton from "../ToggleButton";
+import ToggleButton from "../ui/ToggleButton";
 import Score from "./ScoreView";
 import TeamView from "./TeamView";
 
-interface Props {
+type Props = {
   game: Game;
-}
+};
 
 const GameInfo = ({ game }: Props) => {
   const [show, setShow] = useState(false);
@@ -30,7 +30,7 @@ const GameInfo = ({ game }: Props) => {
       </Flex>
       {game.period && (
         <HStack>
-          <BoxScore
+          <BoxScoreContainer
             gameId={game.id}
             home={game.home_team.abbreviation}
             away={game.visitor_team.abbreviation}
