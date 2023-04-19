@@ -11,18 +11,19 @@ const Error = ({ message }: Props) => {
 
   return (
     <Flex
-      alignItems="center"
+      maxW='fit-content'
+      alignItems='center'
       display={close ? "none" : "flex"}
       px={4}
       py={1}
-      bg="red.300"
+      bg='red.300'
       borderRadius={4}
       gap={12}
     >
-      <Text color="gray.50">{message}</Text>
+      <Text color='gray.50'>{message}</Text>
       <CloseIcon
         onClick={() => setClose(true)}
-        color="gray.50"
+        color='gray.50'
         fontSize={8}
         _hover={{ cursor: "pointer" }}
       />

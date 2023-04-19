@@ -36,7 +36,11 @@ function App() {
           ))}
         </Stack>
       )}
-      {error.length && <ErrorDisplay message={error} />}
+      {error && (
+        <Flex justifyContent='center'>
+          <ErrorDisplay message={error} />
+        </Flex>
+      )}
     </Stack>
   );
 }
