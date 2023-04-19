@@ -22,10 +22,16 @@ const GameInfo = ({ game }: Props) => {
   const { home_team_score, visitor_team_score } = game;
 
   return (
-    <VStack w={{ base: "max-content", md: "4xl" }} justifyContent="center">
-      <Flex w="full" borderRadius={6} backgroundColor="gray.100" shadow="sm">
+    <VStack w={{ base: "max-content", md: "4xl" }} justifyContent='center'>
+      <Flex w='full' borderRadius={6} backgroundColor='gray.100' shadow='sm'>
         <TeamView team={game.home_team} home />
-        <Score home={home_team_score} away={visitor_team_score} show={show} status={game.status} />
+        <Score
+          home={home_team_score}
+          away={visitor_team_score}
+          show={show}
+          status={game.status}
+          period={game.period}
+        />
         <TeamView team={game.visitor_team} />
       </Flex>
       {game.period && (
@@ -35,23 +41,23 @@ const GameInfo = ({ game }: Props) => {
             home={game.home_team.abbreviation}
             away={game.visitor_team.abbreviation}
           />
-          <ToggleButton data={["Winner?", <Logo size={22} team={winner(game)} />]} size="xs" />
+          <ToggleButton data={["Winner?", <Logo size={22} team={winner(game)} />]} size='xs' />
           <Button
-            size="xs"
+            size='xs'
             width={24}
-            colorScheme="whatsapp"
+            colorScheme='whatsapp'
             onClick={() => setShow(!show)}
-            shadow="sm"
+            shadow='sm'
           >
             {show ? "Hide" : "Show"} score
           </Button>
           <ToggleButton
             data={["Over 220.5?", hitTheOver(home_team_score, visitor_team_score)]}
-            size="xs"
+            size='xs'
           />
           <ToggleButton
             data={["Blowout?", isBlowout(home_team_score, visitor_team_score) ? "Yes" : "No"]}
-            size="xs"
+            size='xs'
           />
         </HStack>
       )}

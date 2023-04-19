@@ -5,9 +5,15 @@ interface Props {
   away: number;
   status: string;
   show: boolean;
+  period: number;
 }
 
-const Score = ({ home, away, status, show }: Props) => {
+const Score = ({ home, away, status, show, period }: Props) => {
+  const gameStatus =
+    period === 0
+      ? new Date(status).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+      : status;
+
   return (
     <HStack justifyContent='center' backgroundColor='gray.200' mx={2} w={24} borderRadius={4}>
       {show ? (
@@ -21,7 +27,7 @@ const Score = ({ home, away, status, show }: Props) => {
         </Flex>
       ) : (
         <Text fontWeight='bold' color='gray.500'>
-          {new Date(status).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+          {gameStatus}
         </Text>
       )}
     </HStack>
