@@ -22,7 +22,7 @@ const GameInfo = ({ game }: Props) => {
   const { home_team_score, visitor_team_score } = game;
 
   return (
-    <VStack w={{ base: "max-content", md: "4xl" }} justifyContent='center'>
+    <VStack justifyContent='center' w='full' px={2}>
       <Flex w='full' borderRadius={6} backgroundColor='gray.100' shadow='sm'>
         <TeamView team={game.home_team} home />
         <Score
@@ -35,7 +35,7 @@ const GameInfo = ({ game }: Props) => {
         <TeamView team={game.visitor_team} />
       </Flex>
       {game.period && (
-        <HStack>
+        <HStack w='full' justifyContent='center'>
           <BoxScoreContainer
             gameId={game.id}
             home={game.home_team.abbreviation}
@@ -49,10 +49,10 @@ const GameInfo = ({ game }: Props) => {
             onClick={() => setShow(!show)}
             shadow='sm'
           >
-            {show ? "Hide" : "Show"} score
+            {show ? "Hide" : "Show"}
           </Button>
           <ToggleButton
-            data={["Over 220.5?", hitTheOver(home_team_score, visitor_team_score)]}
+            data={["+220.5?", hitTheOver(home_team_score, visitor_team_score)]}
             size='xs'
           />
           <ToggleButton

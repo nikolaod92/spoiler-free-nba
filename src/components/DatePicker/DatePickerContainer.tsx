@@ -9,11 +9,11 @@ interface Props {
 
 const DatePickerContainer = ({ date, setDate }: Props) => {
   return (
-    <Flex alignItems="center">
+    <Flex alignItems='center' mx='auto' maxW='fit-content'>
       <ChevronLeftIcon
         onClick={() => setDate(new Date(date.valueOf() - 86400000))}
         _hover={{ cursor: "pointer", transform: "scale(1.2)" }}
-        transition="all 0.2s ease"
+        transition='all 0.2s ease'
         fontSize={20}
         mr={1}
       />
@@ -22,7 +22,7 @@ const DatePickerContainer = ({ date, setDate }: Props) => {
         onClick={() => setDate(new Date(date.valueOf() + 86400000))}
         _hover={{ cursor: "pointer", transform: "scale(1.2)" }}
         fontSize={20}
-        transition="all 0.2s ease"
+        transition='all 0.2s ease'
         ml={1}
       />
     </Flex>
