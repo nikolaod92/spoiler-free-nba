@@ -9,18 +9,18 @@ type Props = {
 };
 
 const headerStats = [
-  "GmSc",
-  "Min",
+  "Pts",
+  "Reb",
+  "Ast",
   "Fg",
   "3pt",
   "Ft",
-  "Reb",
-  "Ast",
   "Blk",
   "Stl",
   "TO",
   "PF",
-  "Pts"
+  "Min",
+  "GSc"
 ];
 
 const StatTable = ({ stats, display }: Props) => {
@@ -30,9 +30,9 @@ const StatTable = ({ stats, display }: Props) => {
   });
 
   return (
-    <TableContainer overflowX="unset" overflowY="unset">
-      <Table variant="simple" size="sm">
-        <Thead position="sticky" top={0} zIndex="docked" bg="white">
+    <TableContainer overflowX='unset' overflowY='unset'>
+      <Table variant='simple' size='sm'>
+        <Thead position='sticky' top={0} zIndex='docked' bg='white'>
           <Tr>
             <Th></Th>
             {headerStats.map((stat) => (

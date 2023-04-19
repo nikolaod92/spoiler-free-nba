@@ -12,12 +12,12 @@ const BoxScore = ({ ...props }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <Box>
-      <Button size="xs" shadow="sm" w={24} onClick={onOpen}>
+    <>
+      <Button size='xs' shadow='sm' w={24} onClick={onOpen}>
         Box Score
       </Button>
       {isOpen && <BoxScoreModal {...props} onClose={onClose} />}
-    </Box>
+    </>
   );
 };
 

@@ -39,11 +39,11 @@ const BoxScoreModal = ({ gameId, home, away, onClose }: Props) => {
 
   return (
     <Modal
-      size={{ base: "md", md: "6xl" }}
+      size={{ lg: "6xl" }}
       isOpen
       onClose={onClose}
-      motionPreset="slideInBottom"
-      scrollBehavior="inside"
+      motionPreset='slideInBottom'
+      scrollBehavior='inside'
       blockScrollOnMount
     >
       {loading ? (
@@ -53,18 +53,18 @@ const BoxScoreModal = ({ gameId, home, away, onClose }: Props) => {
       ) : (
         sortedStats && (
           <>
-            <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(2px) " />
-            <ModalContent overflow="hidden">
+            <ModalOverlay bg='blackAlpha.300' backdropFilter='blur(2px) ' />
+            <ModalContent overflow='hidden'>
               <ModalHeader>
-                <Flex direction="column">
+                <Flex direction='column'>
                   <Flex gap={2}>
                     <Logo size={64} team={home} />
-                    <Text fontSize="4xl">{sortedStats[0].game.home_team_score}</Text>
-                    <Text fontSize="4xl">{sortedStats[0].game.visitor_team_score}</Text>
+                    <Text fontSize='4xl'>{sortedStats[0].game.home_team_score}</Text>
+                    <Text fontSize='4xl'>{sortedStats[0].game.visitor_team_score}</Text>
                     <Logo size={64} team={away} />
                   </Flex>
-                  <Flex alignItems="center">
-                    <Text fontSize="xs" mr={2}>
+                  <Flex alignItems='center'>
+                    <Text fontSize='xs' mr={2}>
                       Show stats for:
                     </Text>
                     <StatTableDisplaySwitch
@@ -83,7 +83,7 @@ const BoxScoreModal = ({ gameId, home, away, onClose }: Props) => {
           </>
         )
       )}
-      {error.length && <ErrorDisplay message={error} />}
+      {error.length > 0 && <ErrorDisplay message={error} />}
     </Modal>
   );
 };
