@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { format } from "date-fns";
 import { Game } from "./types";
-import { Badge, Stack, Text, useToast } from "@chakra-ui/react";
+import { Badge, Box, Flex, Stack } from "@chakra-ui/react";
 import GameInfo from "./components/GameInfo/GameInfo";
 import DatePickerContainer from "./components/DatePicker/DatePickerContainer";
 import { sortGames } from "./utils";
@@ -23,25 +23,18 @@ function App() {
   const sortedGames = sortGames(games);
 
   return (
-    <Stack alignItems="center" mt={4} mb={12} w={{ base: "lg", md: "4xl" }} mx="auto">
+    <Stack mt={4} mb={12} w={{ md: "4xl" }} mx='auto'>
       <DatePickerContainer date={startDate} setDate={(date) => setStartDate(date)} />
       {loading ? (
-        <Loader />
+        <Flex justifyContent='center'>
+          <Loader />
+        </Flex>
       ) : (
-        <>
-          <Badge
-            fontSize="0.8em"
-            color="gray.600"
-            w={24}
-            textAlign="center"
-            colorScheme={games?.length ? "gray" : "red"}
-          ></Badge>
-          <Stack spacing={2}>
-            {sortedGames?.map((game) => (
-              <GameInfo key={game.id} game={game} />
-            ))}
-          </Stack>
-        </>
+        <Stack spacing={2}>
+          {sortedGames?.map((game) => (
+            <GameInfo key={game.id} game={game} />
+          ))}
+        </Stack>
       )}
       {error.length && <ErrorDisplay message={error} />}
     </Stack>
