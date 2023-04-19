@@ -13,7 +13,7 @@ const BoxScore = ({ ...props }: Props) => {
 
   return (
     <>
-      <Button size='xs' shadow='sm' w={24} onClick={onOpen}>
+      <Button size='xs' w={24} onClick={onOpen}>
         Box Score
       </Button>
       {isOpen && <BoxScoreModal {...props} onClose={onClose} />}
