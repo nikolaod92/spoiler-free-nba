@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Game } from "../../types";
 import { hitTheOver, isBlowout, winner } from "../../utils";
 import BoxScoreContainer from "../BoxScore/BoxScoreContainer";
-import Logo from "../Logo";
+import Logo from "../ui/Logo";
 import ToggleButton from "../ui/ToggleButton";
 import Score from "./ScoreView";
 import TeamView from "./TeamView";

@@ -1,5 +1,5 @@
 import { RadioGroup, Stack, Radio } from "@chakra-ui/react";
-import { TeamAbbreviation } from "../Logo";
+import { TeamAbbreviation } from "../ui/Logo";
 
 type Props = {
   home: TeamAbbreviation;
@@ -10,14 +10,14 @@ type Props = {
 const StatTableDisplaySwitch = ({ home, away, onChange }: Props) => {
   return (
     <RadioGroup onChange={onChange}>
-      <Stack direction="row">
-        <Radio size="sm" value="all" colorScheme="gray">
+      <Stack direction='row'>
+        <Radio size='sm' value='all' colorScheme='gray'>
           All
         </Radio>
-        <Radio spacing={1} size="sm" value={home} colorScheme="gray">
+        <Radio spacing={1} size='sm' value={home} colorScheme='gray'>
           {home}
         </Radio>
-        <Radio spacing={1} size="sm" value={away} colorScheme="gray">
+        <Radio spacing={1} size='sm' value={away} colorScheme='gray'>
           {away}
         </Radio>
       </Stack>

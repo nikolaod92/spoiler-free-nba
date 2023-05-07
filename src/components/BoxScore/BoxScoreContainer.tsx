@@ -1,5 +1,5 @@
 import { Box, Button, useDisclosure } from "@chakra-ui/react";
-import { TeamAbbreviation } from "../Logo";
+import { TeamAbbreviation } from "../ui/Logo";
 import BoxScoreModal from "./BoxScoreModal";
 
 type Props = {

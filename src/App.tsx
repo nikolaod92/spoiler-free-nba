@@ -3,9 +3,9 @@ import { format } from "date-fns";
 import { Game } from "./types";
 import { Badge, Box, Flex, Stack } from "@chakra-ui/react";
 import GameInfo from "./components/GameInfo/GameInfo";
-import DatePickerContainer from "./components/DatePicker/DatePickerContainer";
+import DatePickerContainer from "./components/ui/DatePicker/DatePickerContainer";
 import { sortGames } from "./utils";
-import Loader from "./components/Loader/Loader";
+import Loader from "./components/ui/Loader/Loader";
 import useFetch from "./hooks/useFetch";
 import ErrorDisplay from "./components/ui/ErrorDisplay";
 

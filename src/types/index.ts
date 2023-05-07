@@ -1,4 +1,4 @@
-import { TeamAbbreviation } from "../components/Logo";
+import { TeamAbbreviation } from "../components/ui/Logo";
 
 export type Game = {
   id: number;

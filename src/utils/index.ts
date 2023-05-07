@@ -1,4 +1,4 @@
-import { TeamAbbreviation } from "../components/Logo";
+import { TeamAbbreviation } from "../components/ui/Logo";
 import { Game, Stats } from "./../types/index";
 
 export const isTripleDouble = (...stats: number[]) => {

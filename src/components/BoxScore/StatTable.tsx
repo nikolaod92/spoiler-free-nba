@@ -1,6 +1,6 @@
 import { TableContainer, Thead, Tr, Th, Tbody, Table } from "@chakra-ui/react";
 import { Stats } from "../../types";
-import { TeamAbbreviation } from "../Logo";
+import { TeamAbbreviation } from "../ui/Logo";
 import StatTableRow from "./StatTableRow";
 
 type Props = {

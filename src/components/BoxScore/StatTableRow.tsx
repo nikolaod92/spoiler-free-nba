@@ -3,7 +3,7 @@ import { Tr, Td, Flex, Badge, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import { Averages, Stats } from "../../types";
 import { gameScore, isTripleDouble } from "../../utils";
-import Logo from "../Logo";
+import Logo from "../ui/Logo";
 
 interface Props {
   playerStats: Stats;

@@ -1,6 +1,6 @@
 import { Flex, Text } from "@chakra-ui/react";
 import { Team } from "../../types";
-import Logo from "../Logo";
+import Logo from "../ui/Logo";
 
 interface Props {
   team: Team;

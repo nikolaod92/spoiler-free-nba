@@ -11,9 +11,9 @@ import {
 import { useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import { Stats } from "../../types";
-import Loader from "../Loader/Loader";
-import LoaderContainer from "../Loader/LoaderContainer";
-import Logo, { TeamAbbreviation } from "../Logo";
+import Loader from "../ui/Loader/Loader";
+import LoaderContainer from "../ui/Loader/LoaderContainer";
+import Logo, { TeamAbbreviation } from "../ui/Logo";
 import ErrorDisplay from "../ui/ErrorDisplay";
 import StatTable from "./StatTable";
 import StatTableDisplaySwitch from "./StatTableDisplaySwitch";
